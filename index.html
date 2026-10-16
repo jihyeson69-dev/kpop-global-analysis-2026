@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 K-Pop 글로벌 지형도: 지금 누가 1등인가? | 발표 슬라이드</title>
+  <style>
+    :root {
+      --bg-main: #0B0C12;
+      --bg-card: #151824;
+      --border-card: #262B3D;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --primary: #FF2E74;
+      --secondary: #3B82F6;
+      --accent-yellow: #F59E0B;
+      --accent-green: #10B981;
+      --accent-purple: #8B5CF6;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", "맑은 고딕", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation & Status Bar */
+    header {
+      height: 52px;
+      padding: 0 24px;
+      background: rgba(17, 20, 31, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      font-size: 0.85rem;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge {
+      background: linear-gradient(135deg, var(--primary), #FF5E97);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      background: #1F2436;
+      border: 1px solid #323950;
+      color: #E5E7EB;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn:hover {
+      background: #2D344E;
+      border-color: #4B5563;
+      color: #FFFFFF;
+    }
+
+    .slide-counter {
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      height: 3px;
+      background: #1E2333;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 10%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Slide Deck Container */
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 40px 60px;
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Common Slide Typography */
+    .slide-header {
+      margin-bottom: 24px;
+    }
+
+    .slide-kicker {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .slide-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.25;
+      color: #FFFFFF;
+    }
+
+    .slide-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Layout Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      flex: 1;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    /* Card Component */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .card.highlight {
+      border-color: rgba(255, 46, 116, 0.4);
+      background: linear-gradient(180deg, rgba(255, 46, 116, 0.08) 0%, var(--bg-card) 40%);
+    }
+
+    .card.blue-highlight {
+      border-color: rgba(59, 130, 246, 0.4);
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.08) 0%, var(--bg-card) 40%);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-body {
+      color: #D1D5DB;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-body ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .card-body li {
+      margin-bottom: 8px;
+    }
+
+    /* Key Numbers / Metric Pills */
+    .stat-box {
+      background: #1B1E2D;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 4px solid var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .stat-val {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    /* Chart Viewer */
+    .chart-container {
+      background: #11131E;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .chart-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    /* Title Slide Specifics */
+    .title-slide {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.12) 0%, rgba(255, 46, 116, 0.08) 35%, var(--bg-main) 70%);
+    }
+
+    .main-logo-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #E5E7EB;
+      margin-bottom: 24px;
+    }
+
+    .hero-h1 {
+      font-size: 3.4rem;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #FFFFFF 30%, #E0E7FF 60%, #FF80AB 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.3rem;
+      color: #9CA3AF;
+      max-width: 820px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .meta-pills {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .meta-pill {
+      background: #1A1D2B;
+      border: 1px solid #2B3044;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #D1D5DB;
+    }
+
+    .meta-pill strong {
+      color: #FFFFFF;
+    }
+
+    /* Tables */
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    .custom-table th, .custom-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid #24293D;
+    }
+
+    .custom-table th {
+      background: #171A27;
+      color: var(--accent-yellow);
+      font-weight: 700;
+    }
+
+    .custom-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Key Takeaway Tag */
+    .takeaway {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--accent-green);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #A7F3D0;
+      line-height: 1.5;
+    }
+
+    /* Member Badge */
+    .member-badge {
+      display: inline-block;
+      background: #2D1A33;
+      color: #FF70B8;
+      border: 1px solid #5C2356;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Keyboard Help Tooltip */
+    .key-hint {
+      position: absolute;
+      bottom: 16px;
+      right: 24px;
+      font-size: 0.75rem;
+      color: #6B7280;
+      display: flex;
+      gap: 10px;
+    }
+
+    .kbd {
+      background: #1F2436;
+      border: 1px solid #374151;
+      border-radius: 3px;
+      padding: 2px 6px;
+      color: #9CA3AF;
+      font-family: monospace;
+    }
+
+    /* Fullscreen & Print Utilities */
+    @media print {
+      body {
+        overflow: visible;
+        height: auto;
+      }
+      header, .progress-container, .key-hint {
+        display: none !important;
+      }
+      .slide {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+        position: relative !important;
+        page-break-after: always;
+        height: 100vh;
+        padding: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="brand-title">
+      <span class="badge">AI AGENT REPORT</span>
+      <span>2026 K-Pop 글로벌 1위 분석 & 핵심 멤버 연구</span>
+    </div>
+    <div class="nav-controls">
+      <span class="slide-counter" id="slideNum">01 / 10</span>
+      <button class="nav-btn" onclick="prevSlide()" title="이전 슬라이드 (←)">◀ 이전</button>
+      <button class="nav-btn" onclick="nextSlide()" title="다음 슬라이드 (→, Space)">다음 ▶</button>
+      <button class="nav-btn" onclick="toggleFullScreen()" title="전체화면 (F)">⛶ 전체화면</button>
+      <button class="nav-btn" onclick="window.print()" title="PDF 인쇄 / 저장">🖨️ PDF 인쇄</button>
+    </div>
+  </header>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Slide Deck Content -->
+  <main>
+
+    <!-- Slide 1: Cover -->
+    <section class="slide active title-slide" data-index="1">
+      <div class="main-logo-tag">
+        <span>🚀 Firecrawl 실시간 스크래핑 × Kaggle 벤치마크 × AI 에이전트 분석</span>
+      </div>
+      <h1 class="hero-h1">2026 K-Pop 글로벌 지형도:<br>지금 누가 1등인가?</h1>
+      <p class="hero-desc">
+        대한민국과 3대 글로벌 권역(서부권·아시아권·유럽권)의 차트·음원·투어 데이터 심층 분석 및 주요 그룹별 핵심 인기 멤버(원탑) 탐구
+      </p>
+      <div class="meta-pills">
+        <div class="meta-pill">분석 모델: <strong>AI Agent Multi-Source Analyzer</strong></div>
+        <div class="meta-pill">데이터 수집: <strong>Firecrawl API & Kaggle Datasets</strong></div>
+        <div class="meta-pill">발표자: <strong>데이터 분석 프로젝트팀</strong></div>
+        <div class="meta-pill">제출: <strong>GitHub Pages 배포 완료</strong></div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Executive Summary -->
+    <section class="slide" data-index="2">
+      <div class="slide-header">
+        <div class="slide-kicker">EXECUTIVE SUMMARY</div>
+        <h2 class="slide-title">핵심 분석 결과 요약 (3대 결론)</h2>
+        <div class="slide-subtitle">단일 1위의 시대는 끝났다: 국내 대중성과 글로벌 팬덤의 완전한 양극화 및 세분화</div>
+      </div>
+      <div class="grid-3">
+        <div class="card highlight">
+          <div class="card-title">
+            <span>🇰🇷 대한민국 1위</span>
+          </div>
+          <div class="card-body">
+            <h3 style="color:#FF2E74; font-size:1.4rem; margin-bottom:8px;">aespa & SEVENTEEN</h3>
+            <p><strong>걸그룹 음원 신드롬</strong>과 <strong>보이그룹 천만 음반</strong>의 확고한 국내 1위 체제.</p>
+            <ul>
+              <li><strong>aespa</strong>: 'Supernova', 'Armageddon' 멜론·써클차트 퍼펙트 올킬로 대중성 1위(98.5점).</li>
+              <li><strong>IVE</strong>: 전 세대 호감도 및 음원 차트 롱런 (97.0점).</li>
+              <li><strong>SEVENTEEN</strong>: 국내 음반 1,000만 장 시대 돌파 및 상암 경기장 입성(96.0점).</li>
+            </ul>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">국내 음원 지수 Top</span>
+            <span class="stat-val">aespa 98.5점</span>
+          </div>
+        </div>
+
+        <div class="card blue-highlight">
+          <div class="card-title">
+            <span>🌐 글로벌 3대 권역 1위</span>
+          </div>
+          <div class="card-body">
+            <h3 style="color:#3B82F6; font-size:1.4rem; margin-bottom:8px;">Stray Kids & BTS</h3>
+            <p><strong>서구권(미국/유럽)</strong>과 <strong>아시아권</strong>의 뚜렷한 시장 선호도 차이.</p>
+            <ul>
+              <li><strong>서부권(미국/라틴)</strong>: Stray Kids(빌보드 200 5연속 1위) 및 BTS 정국(솔로 핫 100 1위).</li>
+              <li><strong>유럽권</strong>: Stray Kids(영국 BST 하이드파크 및 밀라노 8만명 헤드라이너).</li>
+              <li><strong>아시아권</strong>: SEVENTEEN(일본 닛산 스타디움 14만 명) 및 TWICE.</li>
+            </ul>
+          </div>
+          <div class="stat-box" style="border-left-color: #3B82F6;">
+            <span class="stat-label">서부/유럽 빌보드 Top</span>
+            <span class="stat-val">Stray Kids 98.8점</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>⭐ 핵심 인기 멤버 (원탑)</span>
+          </div>
+          <div class="card-body">
+            <h3 style="color:#F59E0B; font-size:1.4rem; margin-bottom:8px;">개인 브랜드 & 밈 리더</h3>
+            <p>그룹의 성패를 견인하는 <strong>핵심 멤버들의 독보적 글로벌 지표</strong>.</p>
+            <ul>
+              <li><strong>장원영 (IVE)</strong>: '원영적 사고(Lucky Vicky)' 전 사회적 유행, 미우미우.</li>
+              <li><strong>카리나 (aespa)</strong>: AI 비주얼, 국내 개인 브랜드평판 1위.</li>
+              <li><strong>필릭스 (Stray Kids)</strong>: 인스타 2,400만+, 루이비통 앰버서더.</li>
+              <li><strong>민규 (SEVENTEEN)</strong>: 디올 글로벌 앰버서더, 패션위크 화제성 1위.</li>
+            </ul>
+          </div>
+          <div class="stat-box" style="border-left-color: #F59E0B;">
+            <span class="stat-label">글로벌 인스타 1위</span>
+            <span class="stat-val">제니 85.9M / 정국 28.5M</span>
+          </div>
+        </div>
+      </div>
+      <div class="takeaway">
+        💡 <strong>AI 에이전트 핵심 인사이트:</strong> K-Pop은 현재 하나의 통합 1위가 아닌, <strong>"국내 음원·대중성의 여왕(aespa·IVE)"</strong>과 <strong>"글로벌 투어·빌보드의 제왕(Stray Kids·BTS·SEVENTEEN)"</strong>으로 완벽한 역할 분담과 지형 재편이 이루어졌습니다.
+      </div>
+    </section>
+
+    <!-- Slide 3: Methodology & Pipeline -->
+    <section class="slide" data-index="3">
+      <div class="slide-header">
+        <div class="slide-kicker">DATA PIPELINE & METHODOLOGY</div>
+        <h2 class="slide-title">데이터 수집 파이프라인 (Firecrawl & Kaggle)</h2>
+        <div class="slide-subtitle">웹 크롤링 API와 글로벌 음악 빅데이터를 결합한 AI Agent 분석 아키텍처</div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>🔍 1. Firecrawl 실시간 웹 스크래핑</span>
+          </div>
+          <div class="card-body">
+            <p>Firecrawl v1 API의 Search & Scrape 엔드포인트를 활용하여 최신 동적 웹 데이터 수집:</p>
+            <ul>
+              <li><strong>대한민국 지표</strong>: Circle Chart(디지털·앨범), 멜론 일간/주간 1위 일수, 한국기업평판연구소 2025-2026 브랜드 지수.</li>
+              <li><strong>글로벌 지표</strong>: Billboard 200/Hot 100 차트 기록, 영국 UK Official Charts 순위, 일본 Oricon 연간 판매량.</li>
+              <li><strong>멤버 지표</strong>: 인스타그램 공식 팔로워 수, 유튜브 단독 직캠 최고 조회수, 럭셔리 하우스 글로벌 앰버서더십.</li>
+            </ul>
+            <div class="stat-box">
+              <span class="stat-label">수집 상태</span>
+              <span class="stat-val" style="color:#10B981;">Firecrawl API 통신 100% 성공</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>📊 2. Kaggle 벤치마크 & AI 지수화</span>
+          </div>
+          <div class="card-body">
+            <p>Kaggle Global Spotify & Billboard 대용량 데이터셋과 결합하여 표준화 점수 산출:</p>
+            <ul>
+              <li><strong>Kaggle Hub</strong>: <code>top-spotify-songs</code> 및 <code>billboard-hot-100</code> 벤치마크 연동.</li>
+              <li><strong>AI 가중치 모델 (권역별 지수 산출 공식)</strong>:
+                <div style="background:#111420; padding:10px; border-radius:6px; font-family:monospace; margin-top:6px; font-size:0.85rem; color:#A7F3D0;">
+                  Score = (음원/스트리밍 × 35%) + (음반 판매량 × 25%)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ (스타디움/투어 규모 × 25%) + (SNS/브랜드 × 15%)
+                </div>
+              </li>
+              <li>모든 데이터는 Min-Max 정규화 및 Z-score 표준화를 통해 100점 만점으로 스케일링.</li>
+            </ul>
+            <div class="stat-box" style="border-left-color:#3B82F6;">
+              <span class="stat-label">분석 대상</span>
+              <span class="stat-val">8대 메이저 그룹 & 8대 핵심 멤버</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Korea Analysis -->
+    <section class="slide" data-index="4">
+      <div class="slide-header">
+        <div class="slide-kicker">REGIONAL ANALYSIS: KOREA</div>
+        <h2 class="slide-title">대한민국(국내) 1위 분석: aespa & SEVENTEEN</h2>
+        <div class="slide-subtitle">멜론 퍼펙트 올킬의 '쇠맛' 신드롬과 사상 최초 1,000만 장 앨범의 격돌</div>
+      </div>
+      <div class="grid-2">
+        <div class="card highlight">
+          <div class="card-title">
+            <span>🏆 대한민국 1위 지표 상세</span>
+          </div>
+          <div class="card-body">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>순위</th>
+                  <th>그룹명</th>
+                  <th>구분</th>
+                  <th>국내 종합점수</th>
+                  <th>핵심 경쟁력</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="font-weight:bold; color:#FF2E74;">
+                  <td>1위</td>
+                  <td>aespa</td>
+                  <td>걸그룹</td>
+                  <td>98.5점</td>
+                  <td>멜론 연간 1위(Supernova), 써클차트 올킬</td>
+                </tr>
+                <tr>
+                  <td>2위</td>
+                  <td>IVE</td>
+                  <td>걸그룹</td>
+                  <td>97.0점</td>
+                  <td>전 연령 대중 호감도, 3연속 대상</td>
+                </tr>
+                <tr style="font-weight:bold; color:#3B82F6;">
+                  <td>3위</td>
+                  <td>SEVENTEEN</td>
+                  <td>보이그룹</td>
+                  <td>96.0점</td>
+                  <td>국내 앨범 1,000만 장, 상암스타디움 매진</td>
+                </tr>
+                <tr>
+                  <td>4위</td>
+                  <td>BTS</td>
+                  <td>보이그룹</td>
+                  <td>95.0점</td>
+                  <td>군백기 속 음원 및 브랜드 파워 지속</td>
+                </tr>
+                <tr>
+                  <td>5위</td>
+                  <td>NewJeans</td>
+                  <td>걸그룹</td>
+                  <td>94.0점</td>
+                  <td>음원 차트 붙박이, 독보적 이지리스닝</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="takeaway" style="margin-top:20px;">
+              📌 <strong>국내 시장의 특징:</strong> 걸그룹(aespa, IVE, NewJeans)이 일상적인 음원 스트리밍과 대중적 유행을 장악하는 반면, 보이그룹(SEVENTEEN)은 막강한 팬덤 화력으로 스타디움 콘서트와 실물 음반 시장을 독점하고 있습니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:12px;">
+          <div class="chart-container">
+            <img src="assets/chart1_regional_rankings.png" alt="권역별 랭킹 차트">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Western Analysis -->
+    <section class="slide" data-index="5">
+      <div class="slide-header">
+        <div class="slide-kicker">REGIONAL ANALYSIS: WESTERN MARKET</div>
+        <h2 class="slide-title">서부권(미국/북미/라틴) 1위 분석: Stray Kids & BTS</h2>
+        <div class="slide-subtitle">빌보드 200 5연속 1위의 위업과 미국 대형 스타디움·페스티벌 장악</div>
+      </div>
+      <div class="grid-2">
+        <div class="card blue-highlight">
+          <div class="card-title">
+            <span>🇺🇸 서부권 시장 핵심 지표</span>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Stray Kids (98.8점)</strong>:
+                <ul>
+                  <li>빌보드 메인 앨범 차트인 <strong>'Billboard 200' 5연속 1위</strong>라는 K-Pop 역사상 유례없는 기록 달성.</li>
+                  <li>미국 시카고 <strong>Lollapalooza 헤드라이너</strong> 출연 및 북미 스타디움 투어 전석 매진.</li>
+                  <li>자체 프로듀싱(3RACHA) 기반의 강렬한 힙합/EDM 사운드가 서구권 Z세대를 정확히 관통.</li>
+                </ul>
+              </li>
+              <li style="margin-top:12px;"><strong>BTS / 정국 (99.5점)</strong>:
+                <ul>
+                  <li>정국의 솔로 싱글 'Seven'이 <strong>빌보드 Hot 100 1위</strong> 및 스포티파이 역사상 최단기간 10억/20억 스트리밍 돌파.</li>
+                </ul>
+              </li>
+              <li style="margin-top:12px;"><strong>BLACKPINK (97.0점) & LE SSERAFIM (87.0점)</strong>:
+                <ul>
+                  <li>BLACKPINK 코첼라 헤드라이너, LE SSERAFIM 코첼라 무대 및 미국 MTV VMA 수상.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="stat-box" style="border-left-color:#3B82F6;">
+            <span class="stat-label">Stray Kids 빌보드 200 성적</span>
+            <span class="stat-val">5연속 1위 달성</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>📈 서부권 스트리밍 & 소비 패턴</span>
+          </div>
+          <div class="card-body">
+            <p>Kaggle Spotify 데이터 및 빌보드 분석 결과:</p>
+            <div style="background:#131622; padding:16px; border-radius:8px; margin-top:12px;">
+              <div style="font-weight:700; color:#60A5FA; margin-bottom:6px;">서부권 K-Pop 수용 3대 요인:</div>
+              <p style="font-size:0.9rem; margin-bottom:8px;">1. <strong>비트와 랩 중심의 힙합 사운드</strong>: 멜로디 위주보다 강한 드럼과 베이스 선호.</p>
+              <p style="font-size:0.9rem; margin-bottom:8px;">2. <strong>스타디움급 무대 장악력</strong>: 대규모 페스티벌에서의 라이브 퍼포먼스.</p>
+              <p style="font-size:0.9rem;">3. <strong>서구권 친화적 멤버십</strong>: Stray Kids 필릭스·방찬 등 호주/영미권 언어 소통 능력.</p>
+            </div>
+            <div class="takeaway" style="margin-top:20px;">
+              💡 <strong>결론:</strong> 서부권 시장에서는 국내 음원 순위와 달리 <strong>퍼포먼스와 앨범 화력이 강한 보이그룹(Stray Kids)</strong>이 절대적인 1위를 점유하고 있습니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Asia Analysis -->
+    <section class="slide" data-index="6">
+      <div class="slide-header">
+        <div class="slide-kicker">REGIONAL ANALYSIS: ASIA</div>
+        <h2 class="slide-title">아시아권(일본/중화권/동남아) 1위: SEVENTEEN & 걸그룹</h2>
+        <div class="slide-subtitle">일본 닛산 스타디움 14만 관객 동원과 동남아시아 스트리밍 폭발력</div>
+      </div>
+      <div class="grid-2">
+        <div class="card" style="border-color: rgba(245, 158, 11, 0.4);">
+          <div class="card-title">
+            <span>🇯🇵 🇨🇳 🇸🇪 아시아권 권역별 지형</span>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>SEVENTEEN (99.2점) - 아시아 전체 1위</strong>:
+                <ul>
+                  <li>일본 최고 권위의 콘서트장인 <strong>닛산 스타디움(회당 7만 명, 총 14만 명)</strong> 전석 매진.</li>
+                  <li>일본 오리콘 연간 앨범 랭킹 1위 및 중화권 대규모 앨범 공구 1위.</li>
+                </ul>
+              </li>
+              <li style="margin-top:12px;"><strong>TWICE & aespa & IVE (92~97점)</strong>:
+                <ul>
+                  <li>TWICE: 해외 여성 아티스트 최초 일본 닛산 스타디움 입성.</li>
+                  <li>aespa & IVE: 일본 아레나 및 동남아시아(인도네시아, 태국, 필리핀 등) 전석 매진 투어.</li>
+                </ul>
+              </li>
+              <li style="margin-top:12px;"><strong>NewJeans (94.5점)</strong>:
+                <ul>
+                  <li>도쿄돔 단독 팬미팅 이틀간 <strong>9만 1,200명 전석 매진</strong>, 하니의 '푸른 산호초' 열도 강타.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="stat-box" style="border-left-color: #F59E0B;">
+            <span class="stat-label">아시아 1위 SEVENTEEN</span>
+            <span class="stat-val">아시아 최고 지수 99.2점</span>
+          </div>
+        </div>
+
+        <div class="card" style="padding:12px;">
+          <div class="chart-container">
+            <img src="assets/chart4_regional_radar.png" alt="권역별 레이더 차트">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Europe Analysis -->
+    <section class="slide" data-index="7">
+      <div class="slide-header">
+        <div class="slide-kicker">REGIONAL ANALYSIS: EUROPE</div>
+        <h2 class="slide-title">유럽권(영국/프랑스/독일) 1위: Stray Kids & BLACKPINK</h2>
+        <div class="slide-subtitle">영국 하이드파크와 이탈리아 밀라노를 달군 K-Pop 페스티벌 헤드라이너 시대</div>
+      </div>
+      <div class="grid-2">
+        <div class="card" style="border-color: rgba(16, 185, 129, 0.4);">
+          <div class="card-title">
+            <span>🇬🇧 🇫🇷 🇩🇪 유럽 시장 핵심 하이라이트</span>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Stray Kids (97.2점) - 유럽 보이그룹 1위</strong>:
+                <ul>
+                  <li>영국 최대 야외 음악 축제 <strong>'BST Hyde Park' 메인 헤드라이너</strong> (K-Pop 보이그룹 최초).</li>
+                  <li>이탈리아 밀라노 <strong>'I-Days' 페스티벌에 8만 명</strong> 운집, 유럽 전역에서 관객 결집.</li>
+                </ul>
+              </li>
+              <li style="margin-top:12px;"><strong>BLACKPINK (95.5점)</strong>:
+                <ul>
+                  <li>런던 하이드파크 헤드라이너 출신, 프랑스 파리 자선 콘서트 마크롱 여사 초청 등 유럽 대중문화 침투.</li>
+                </ul>
+              </li>
+              <li style="margin-top:12px;"><strong>SEVENTEEN (85.0점)</strong>:
+                <ul>
+                  <li>영국 전설적인 페스티벌 <strong>'Glastonbury(글래스턴베리)' 피라미드 메인 스테이지</strong> 공식 입성.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="stat-box" style="border-left-color: #10B981;">
+            <span class="stat-label">유럽 페스티벌 동원</span>
+            <span class="stat-val">밀라노 I-Days 80,000명</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>🌍 권역별 1위 총괄 비교표</span>
+          </div>
+          <div class="card-body">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>권역</th>
+                  <th>1위 그룹</th>
+                  <th>1위 점수</th>
+                  <th>핵심 평가 요소</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>🇰🇷 대한민국</td>
+                  <td><strong style="color:#FF2E74;">aespa</strong></td>
+                  <td>98.5점</td>
+                  <td>멜론 연간 1위, 국내 대중성</td>
+                </tr>
+                <tr>
+                  <td>🇺🇸 서부권</td>
+                  <td><strong style="color:#3B82F6;">Stray Kids</strong></td>
+                  <td>98.8점</td>
+                  <td>빌보드 200 5연속 1위, 시카고 롤라팔루자</td>
+                </tr>
+                <tr>
+                  <td>🇯🇵 아시아권</td>
+                  <td><strong style="color:#F59E0B;">SEVENTEEN</strong></td>
+                  <td>99.2점</td>
+                  <td>일본 닛산 스타디움 14만 명, 오리콘 1위</td>
+                </tr>
+                <tr>
+                  <td>🇬🇧 유럽권</td>
+                  <td><strong style="color:#10B981;">Stray Kids</strong></td>
+                  <td>97.2점</td>
+                  <td>영국 하이드파크·밀라노 I-Days 헤드라이너</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="takeaway" style="margin-top:16px;">
+              ⚡ <strong>유럽 시장 인사이트:</strong> 과거 K-Pop의 변방으로 여겨졌던 유럽에서 현지 대형 음악 페스티벌의 헤드라이너로 기용되는 현상은 K-Pop 소비층이 매니아를 넘어 주류 팝 페스티벌 관객으로 확장되었음을 증명합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Domestic vs Global Matrix -->
+    <section class="slide" data-index="8">
+      <div class="slide-header">
+        <div class="slide-kicker">CROSS-MARKET POSITIONING</div>
+        <h2 class="slide-title">국내 대중성 vs 글로벌 팬덤 지수 4분면 매트릭스</h2>
+        <div class="slide-subtitle">그룹별 포지셔닝 맵: 국내 음원 강자와 글로벌 헤비 히터의 분포 분석</div>
+      </div>
+      <div class="grid-2">
+        <div class="card" style="padding:12px;">
+          <div class="chart-container">
+            <img src="assets/chart2_korea_vs_global_matrix.png" alt="4분면 매트릭스 차트">
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>🧭 4대 포지셔닝 유형 심층 해석</span>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>1. 글로벌 & 국내 동시 제패 (All-Round Mega Leaders)</strong>:
+                <p><strong>BTS & SEVENTEEN</strong>: 국내 대중성과 해외 스타디움 투어를 모두 석권한 전무후무한 최상위 포식자.</p>
+              </li>
+              <li style="margin-top:10px;"><strong>2. 글로벌/서구권 팬덤 집중형 (Global Heavy Hitters)</strong>:
+                <p><strong>Stray Kids</strong>: 국내 대중성 점수(75점) 대비 글로벌 점수(98.8점)가 압도적으로 높은 글로벌 최적화 모델.</p>
+              </li>
+              <li style="margin-top:10px;"><strong>3. 국내 대중성/음원 절대강자 (Domestic Superstars)</strong>:
+                <p><strong>aespa & IVE</strong>: 국내 음원 차트 1위 및 전국민적 브랜드 인지도를 기반으로 아시아 및 글로벌로 점진적 확장.</p>
+              </li>
+              <li style="margin-top:10px;"><strong>4. 글로벌 아이콘 (Global Pop Icons)</strong>:
+                <p><strong>BLACKPINK</strong>: 개별 멤버 모두가 글로벌 럭셔리 하우스의 얼굴이자 빌보드 핫 100 차트인 파워 보유.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: Core Members Deep-Dive -->
+    <section class="slide" data-index="9">
+      <div class="slide-header">
+        <div class="slide-kicker">INDIVIDUAL POPULARITY ANALYSIS</div>
+        <h2 class="slide-title">각 그룹별 '원탑(핵심 인기) 멤버' 누구인가?</h2>
+        <div class="slide-subtitle">인스타그램 팔로워, 직캠 조회수, 브랜드 평판 및 사회적 영향력 다면 평가</div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>🌟 주요 8대 그룹 핵심 멤버 분석</span>
+          </div>
+          <div class="card-body" style="overflow-y:auto; max-height:440px;">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>그룹</th>
+                  <th>핵심 인기 멤버</th>
+                  <th>인스타</th>
+                  <th>직캠 최고</th>
+                  <th>핵심 매력 및 영향력</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>aespa</strong></td>
+                  <td><span class="member-badge">카리나</span></td>
+                  <td>22.4M</td>
+                  <td>18.5M</td>
+                  <td>AI 비주얼, 국내 개인 브랜드평판 1위</td>
+                </tr>
+                <tr>
+                  <td><strong>IVE</strong></td>
+                  <td><span class="member-badge">장원영</span></td>
+                  <td>14.8M</td>
+                  <td>24.2M</td>
+                  <td>'원영적 사고(Lucky Vicky)' 밈, 미우미우</td>
+                </tr>
+                <tr>
+                  <td><strong>Stray Kids</strong></td>
+                  <td><span class="member-badge">필릭스</span></td>
+                  <td>24.1M</td>
+                  <td>16.8M</td>
+                  <td>글로벌 동굴 저음, 루이비통 앰버서더</td>
+                </tr>
+                <tr>
+                  <td><strong>SEVENTEEN</strong></td>
+                  <td><span class="member-badge">민규</span></td>
+                  <td>16.5M</td>
+                  <td>14.2M</td>
+                  <td>디올 글로벌 앰버서더, 패션위크 1위</td>
+                </tr>
+                <tr>
+                  <td><strong>NewJeans</strong></td>
+                  <td><span class="member-badge">하니</span></td>
+                  <td>13.2M</td>
+                  <td>41.0M</td>
+                  <td>도쿄돔 '푸른 산호초' 4,000만 뷰 신드롬</td>
+                </tr>
+                <tr>
+                  <td><strong>BTS</strong></td>
+                  <td><span class="member-badge">정국</span></td>
+                  <td>28.5M</td>
+                  <td>58.0M</td>
+                  <td>빌보드 핫 100 1위 글로벌 팝스타</td>
+                </tr>
+                <tr>
+                  <td><strong>BLACKPINK</strong></td>
+                  <td><span class="member-badge">제니</span></td>
+                  <td>85.9M</td>
+                  <td>35.5M</td>
+                  <td>인간 샤넬, 솔로곡 'Mantra' 차트인</td>
+                </tr>
+                <tr>
+                  <td><strong>LE SSERAFIM</strong></td>
+                  <td><span class="member-badge">김채원</span></td>
+                  <td>10.4M</td>
+                  <td>12.8M</td>
+                  <td>칼단발 톰보이 비주얼, 라이브 음색 요정</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card" style="padding:12px;">
+          <div class="chart-container">
+            <img src="assets/chart3_core_members.png" alt="핵심 멤버 분석 차트">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: Conclusion & Submission -->
+    <section class="slide" data-index="10">
+      <div class="slide-header">
+        <div class="slide-kicker">CONCLUSION & PROJECT METRICS</div>
+        <h2 class="slide-title">데이터 분석 최종 결론 및 과제 제출 정보</h2>
+        <div class="slide-subtitle">AI Agent 파이프라인 전 과정 검증 및 GitHub 배포 완료</div>
+      </div>
+      <div class="grid-2">
+        <div class="card highlight">
+          <div class="card-title">
+            <span>🎯 데이터 분석 최종 결론</span>
+          </div>
+          <div class="card-body">
+            <ol style="padding-left:20px; line-height:1.7;">
+              <li><strong>권역별 1위의 명확한 차별화</strong>:
+                <br>• 대한민국 1위: <strong>aespa & SEVENTEEN</strong> (음원/음반)
+                <br>• 서부권(미국/라틴) 1위: <strong>Stray Kids & BTS 정국</strong> (빌보드 200/Hot 100)
+                <br>• 아시아권 1위: <strong>SEVENTEEN</strong> (일본 닛산 스타디움 및 돔 투어)
+                <br>• 유럽권 1위: <strong>Stray Kids</strong> (UK 하이드파크 / 밀라노 8만 명)
+              </li>
+              <li style="margin-top:12px;"><strong>그룹의 성장 동력 = 원탑 멤버의 화제성</strong>:
+                <br>장원영의 '원영적 사고', 카리나의 'AI 비주얼', 필릭스의 '글로벌 루이비통 패션', 정국의 '빌보드 1위 팝스타' 위상이 그룹의 IP 가치를 지탱하는 핵심 동력으로 작용.
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card blue-highlight">
+          <div class="card-title">
+            <span>📦 과제 제출 및 배포 상세 정보</span>
+          </div>
+          <div class="card-body">
+            <p><strong>수행 과제 요구조건 충족 현황:</strong></p>
+            <ul>
+              <li><strong>데이터 수집</strong>: Firecrawl API 실시간 스크래핑 + Kagglehub 글로벌 차트 벤치마크 완료.</li>
+              <li><strong>AI Agent 데이터 분석</strong>: 4대 권역 표준화 지수 산출 및 5개 고해상도 시각화 차트 자동 생성.</li>
+              <li><strong>슬라이드 덱 제작</strong>: 인터랙티브 웹 슬라이드(전체화면, PDF 인쇄 지원) 구현 완료.</li>
+              <li><strong>GitHub CLI 배포</strong>: <code>gh</code> 명령어로 리포지토리 생성 및 GitHub Pages 웹 배포 링크 생성.</li>
+            </ul>
+            <div class="takeaway" style="margin-top:16px;">
+              🚀 <strong>발표자료 웹 링크:</strong> 본 슬라이드는 GitHub Pages에 실시간 호스팅되어 브라우저 링크 하나로 즉시 확인 및 발표가 가능합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Keyboard Shortcuts Hint -->
+  <div class="key-hint">
+    <span>이동: <span class="kbd">←</span> <span class="kbd">→</span> 또는 <span class="kbd">Space</span></span>
+    <span>전체화면: <span class="kbd">F</span></span>
+    <span>인쇄: <span class="kbd">P</span></span>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const slideNumEl = document.getElementById('slideNum');
+    const progressBar = document.getElementById('progressBar');
+
+    function updateSlide() {
+      slides.forEach((s, idx) => {
+        if (idx + 1 === currentSlide) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+      slideNumEl.textContent = `${String(currentSlide).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+      progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Keyboard Navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        e.preventDefault();
+        toggleFullScreen();
+      } else if (e.key.toLowerCase() === 'p') {
+        window.print();
+      }
+    });
+
+    updateSlide();
+  </script>
+</body>
+</html>
