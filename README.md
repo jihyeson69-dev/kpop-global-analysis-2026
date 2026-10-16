@@ -8,6 +8,9 @@
 ## 📌 1. 프로젝트 개요 (Project Overview)
 본 프로젝트는 **Firecrawl API 실시간 웹 스크래핑**과 **Kaggle 대용량 글로벌 음악 벤치마크 데이터셋**을 연동하여, **AI Agent 분석 파이프라인**을 통해 2025~2026년 K-Pop 시장의 국내외 순위 및 그룹별 핵심 인기 멤버를 다각도로 분석하고, 이를 **인터랙티브 웹 슬라이드 덱** 형태로 구축하여 **GitHub Pages**로 배포한 과제 제출용 데이터 분석 프로젝트입니다.
 
+* 🌐 **실시간 웹 발표자료 (GitHub Pages)**: [https://jihyeson69-dev.github.io/kpop-global-analysis-2026/](https://jihyeson69-dev.github.io/kpop-global-analysis-2026/)
+* 📦 **GitHub 리포지토리**: [https://github.com/jihyeson69-dev/kpop-global-analysis-2026](https://github.com/jihyeson69-dev/kpop-global-analysis-2026)
+
 ---
 
 ## 🎯 2. 핵심 분석 질문 및 최종 결론 (Executive Summary)
